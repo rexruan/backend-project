@@ -1,4 +1,4 @@
-# Day 1: (2022-02-18)
+# Eriksson-interview
 
 * Initialize repository in Github
 * Initialize django project
@@ -23,7 +23,9 @@
         4. Views all users
     
     * Test
-        1. Unit Test on API
+        1. Test on User models
+        2. Test on Validators
+        3. Test on API
 
     
 
