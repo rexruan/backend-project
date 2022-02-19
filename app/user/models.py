@@ -43,14 +43,9 @@ class User(models.Model):
 
         app_label = 'user'
     
-    username = models.CharField(max_length=128, validators=[validate_username])
-    password = models.CharField(max_length=32, validators=[validate_password])
-    email = models.EmailField(
-        max_length=254,
-        blank=False,
-        unique=True,
-        validators=[validate_email]
-    )
+    username = models.CharField(max_length=128)
+    password = models.CharField(max_length=32)
+    email = models.EmailField(max_length=254)
 
     def __str__(self):
         return self.username
