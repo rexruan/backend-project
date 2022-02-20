@@ -24,10 +24,12 @@ def validate_password(password):
     2. having at least a capital letter, a small letter and a number
     """
     password_re = re.compile(
-        r'(?=.*[0-9])'
+        r'^'
+        r'(?=.*\d)'
         r'(?=.*[a-z])'
         r'(?=.*[A-Z])'
-        r'.{8, 32}'
+        r'.{8,32}'
+        r'$'
     )
     if not password_re.fullmatch(password):
         raise ValidationError(
