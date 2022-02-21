@@ -42,11 +42,14 @@ class TestAPI(TestCase):
         )
     
     def create_user_object(self):
-        User.objects.create(
+
+        user = User.objects.create(
             username='username',
             password='Passw0rd',
             email='example@gmail.com'
         )
+        user.save()
+        return user
 
     def test_connection(self):
         response = self.client.get('/api/')
@@ -102,10 +105,10 @@ class TestAPI(TestCase):
 
 
     def test_update_user(self):
-        self.create_user_object()
+        user = self.create_user_object()
         response = self.client.put(
             path='/api/update',
-            data=self.generate_valid_user(pk=1),
+            data=self.generate_valid_user(pk=user.pk),
             content_type='application/json'
         )
         self.api_test_helper(
@@ -145,10 +148,10 @@ class TestAPI(TestCase):
         )
 
     def test_update_with_invalid_user(self):
-        self.create_user_object()
+        user = self.create_user_object()
         response = self.client.put(
             path='/api/update',
-            data=self.generate_invalid_user(pk=1),
+            data=self.generate_invalid_user(pk=user.pk),
             content_type='application/json'
         )
         self.api_test_helper(
@@ -161,10 +164,10 @@ class TestAPI(TestCase):
         )
 
     def test_remove_user(self):
-        self.create_user_object()
+        user = self.create_user_object()
         response = self.client.delete(
             path='/api/remove',
-            data=json.dumps({'pk': 1})
+            data=json.dumps({'pk': user.pk})
         )
         self.api_test_helper(
             response,
