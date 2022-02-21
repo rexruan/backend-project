@@ -33,8 +33,8 @@ def validate_password(password):
     )
     if not password_re.fullmatch(password):
         raise ValidationError(
-            _(f'The length of password is betweeen 8 and 32;\n\
-                Password contains number, uppercase and lowercase'),
+            'The length of password is between 8 and 32;'
+            'Password contains number, uppercase and lowercase.',
             params = {'password': password}
         )
 
@@ -48,5 +48,4 @@ def validate_user_email(email):
             _(f'The email has been registered'),
             params = {'email': email}
         )
-
-    
+  
