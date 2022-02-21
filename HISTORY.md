@@ -1,4 +1,4 @@
-# Eriksson-interview
+# Backend-interview
 
 * Initialize repository in Github
 * Initialize django project
@@ -26,6 +26,8 @@
         1. Test on User models
         2. Test on Validators
         3. Test on API
+    
+    * Dock compose
 
     
 
