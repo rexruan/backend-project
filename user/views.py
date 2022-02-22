@@ -4,7 +4,6 @@ import json
 from django.core.exceptions import ValidationError
 from django.core import serializers
 from django.http import JsonResponse
-from django.middleware.csrf import get_token
 from django.views.decorators.http import require_http_methods
 
 # Create your views here.
@@ -16,8 +15,7 @@ def user_page(request):
 
 @require_http_methods(['POST'])
 def create_user(request):
-    """
-    """
+    """create user instance"""
     try:
         new_user = json.loads(request.body)
         username = new_user.get('username')
@@ -51,6 +49,7 @@ def create_user(request):
 
     
 def view_all_users(request):
+    """display all users in the database with the fields of username and email"""
     users = User.objects.all()
     serialized_users = serializers.serialize('json', users, fields=('username', 'email'))
     return JsonResponse(
@@ -63,6 +62,7 @@ def view_all_users(request):
 
 @require_http_methods(['PUT'])
 def edit_user(request):
+    """update an existing user from the database"""
     try:
         user = json.loads(request.body)
         user_obj = User.objects.get(pk=user.get('pk'))
@@ -107,13 +107,14 @@ def edit_user(request):
 
 @require_http_methods(['DELETE'])
 def remove_user(request):
+    """delete an existing user from the database with its primary key"""
     try:
         user = json.loads(request.body)
         user_obj =  User.objects.get(pk=user.get('pk'))
         user_obj.delete()
         return JsonResponse({
             'success': 1,
-            'msg': 'Successfully deleted'
+            'msg': 'Deleted successfully'
         })
     except User.DoesNotExist as err:
         return JsonResponse({
