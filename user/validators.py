@@ -7,12 +7,14 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils.translation import gettext_lazy as _
 
-from .models import User
+from user.models import User
 
 def validate_username(username):
+    """doc string"""
     if len(username) < 2 or len(username) > 128:
         raise ValidationError(
-            _(f'{username} is expected to have at least two characters, but no more than 128 characters'),
+            _(f'{username} is expected to have at least two characters, '
+                'but no more than 128 characters'),
             params = {'username': username}
         )
 
@@ -45,7 +47,7 @@ def validate_user_email(email):
     # if email does exist in the database
     if email in User.objects.all().values_list('email', flat=True):
         raise ValidationError(
-            _(f'The email has been registered'),
+            _('The email has been registered'),
             params = {'email': email}
         )
   

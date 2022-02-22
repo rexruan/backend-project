@@ -8,6 +8,6 @@ urlpatterns = [
     path('', user_page),
     path('view-all', view_all_users),
     path('create', create_user),
-    path('edit', edit_user),
+    path('update', edit_user),
     path('remove', remove_user),
 ]

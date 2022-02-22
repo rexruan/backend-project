@@ -1,0 +1,30 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgres/data
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py test -v 2 &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SECRET_KEY=django-insecure-sy_-_7c+8%tgpl%==v8$$o&)_bzr7q42+b=16^cjro%ztx0z@n
+    depends_on:
+      - db
+      

@@ -14,4 +14,4 @@ class UserTestCase(TestCase):
             email='email@example.se'
         )
  
-        self.assertEqual(str(user), "Eriksson")
+        self.assertEqual(str(user), "username")
