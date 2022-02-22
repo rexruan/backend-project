@@ -4,8 +4,8 @@ import json
 from django.core.exceptions import ValidationError
 from django.core import serializers
 from django.http import JsonResponse
+from django.middleware.csrf import get_token
 from django.views.decorators.http import require_http_methods
-from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from .models import User
@@ -14,7 +14,6 @@ from .validators import validate_username, validate_password, validate_user_emai
 def user_page(request):
     return JsonResponse({'success': 1})
 
-@csrf_exempt
 @require_http_methods(['POST'])
 def create_user(request):
     """
@@ -87,7 +86,7 @@ def edit_user(request):
 
         validate_username(username)
         validate_password(password)
-        validate_user_email(email)
+        validate_user_email(email, update=True)
 
     except ValidationError as err:
         return JsonResponse({

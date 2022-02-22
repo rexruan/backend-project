@@ -40,14 +40,15 @@ def validate_password(password):
             params = {'password': password}
         )
 
-def validate_user_email(email):
+def validate_user_email(email, update=False):
     """customized email validator"""
     # if compatible with email format
     validate_email(email)
     # if email does exist in the database
-    if email in User.objects.all().values_list('email', flat=True):
-        raise ValidationError(
-            _('The email has been registered'),
-            params = {'email': email}
-        )
+    if not update:
+        if email in User.objects.all().values_list('email', flat=True):
+            raise ValidationError(
+                _('The email has been registered'),
+                params = {'email': email}
+            )
   
