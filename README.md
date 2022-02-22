@@ -12,12 +12,14 @@ This project is to build a backend based on `Django` framework with an applicati
 </ul>
 
 # How to run project
-prerequisite: `docker-compose` 
+prerequisite: 
+* `docker-compose`
+* [Build prerequisities](https://www.psycopg.org/docs/install.html#install-from-source) for psycopg2
 
-run `docker-compose up`
+run `sudo docker-compose up`
 # Local Version vs Beta Version
 
-The difference between local and beta version is database. SQLite is used as database to run local version. This version is used to develop and extend the features of the project for the developers. It is also good to know that it is necessary to configure `SECRET_KEY` and make migrations in your local environment before running the project.
+The difference between local and beta version is database. SQLite is used as database to run local version. This version is used to develop and extend the features of the project for the developers. It is also good to know that it is necessary to configure `SECRET_KEY`, install dependency libraries and make migrations in your local environment before running the project.
 
 For the Beta Version, I used posgreSQL served as database. Data migration and tests are automatically proccessed before lauching the web server. 
 
