@@ -1,7 +1,7 @@
 import os
 
-from .local import *
-# from .beta import *
+# from .local import *
+from .beta import *
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
