@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from user.models import User
 
 def validate_username(username):
-    """doc string"""
+    """validate username"""
     if len(username) < 2 or len(username) > 128:
         raise ValidationError(
             _(f'{username} is expected to have at least two characters, '
@@ -41,7 +41,10 @@ def validate_password(password):
         )
 
 def validate_user_email(email, update=False):
-    """customized email validator"""
+    """
+    validate email;
+    validate email being unique when it is to create new user
+    """
     # if compatible with email format
     validate_email(email)
     # if email does exist in the database
@@ -51,4 +54,4 @@ def validate_user_email(email, update=False):
                 _('The email has been registered'),
                 params = {'email': email}
             )
-  
+ 
