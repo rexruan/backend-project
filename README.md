@@ -42,7 +42,7 @@ There are four endpoints implemented in the project. Three of them are bundled w
         {
             "username": "user",
             "password": "Passw0rd",
-            "email": "example@gmail.com",
+            "email": "example@gmail.com"
         }
         ```
     * Response Content example:
