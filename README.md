@@ -17,6 +17,76 @@ prerequisite:
 * [Build prerequisities](https://www.psycopg.org/docs/install.html#install-from-source) for psycopg2
 
 run `sudo docker-compose up`
+
+# Utilization of API
+
+There are four endpoints implemented in the project. Three of them are bundled with the specific http methods. Each API is illustrated with examples. 
+
+* `/api/view-all`
+    * Definition: view all users in the database
+    * Http method: not specificed. Default: GET
+    * Response Content example:
+        ```
+        {
+            "success": 1,
+            "users": [
+  
+            ]
+        }
+        ```
+* `/api/create`
+    * Definition: create a new user in the database
+    * Http method: POST
+    * Request body example:
+        ```
+        {
+            "username": "user",
+            "password": "Passw0rd",
+            "email": "example@gmail.com",
+        }
+        ```
+    * Response Content example:
+        ```
+        {
+            "success": 1,
+            "msg": "user has been successfully created"
+        }
+        ```
+* `/api/update`
+    * Defintion: update some fields given an existing user in the database
+    * Http method: PUT
+    * Request body example:
+        ```
+        {
+            "pk": 1,
+            "username": "user",
+            "password": "Passw0rd",
+            "email": "new@gmail.com"
+        }
+        ```
+    * Response Content example:
+        ```
+        {
+            "success": 1,
+            "msg": "Updated successfully"
+        }
+        ```
+
+* `/api/remove`
+    * Defintion: update an user from the database
+    * Http method: DELETE
+    * Request body example:
+        ```
+        {
+            "pk": 1
+        }
+        ```
+    * Response Content example:
+        ```
+        {
+            "success": 1,
+            "msg": "Deleted successfully"
+        }
 # Local Version vs Beta Version
 
 The difference between local and beta version is database. SQLite is used as database to run local version. This version is used to develop and extend the features of the project for the developers. It is also good to know that it is necessary to configure `SECRET_KEY`, install dependency libraries and make migrations in your local environment before running the project.
