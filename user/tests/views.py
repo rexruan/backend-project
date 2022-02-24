@@ -173,7 +173,7 @@ class TestAPI(TestCase):
             response,
             **{
                 'success': 1,
-                'msg': 'Successfully deleted'
+                'msg': 'Deleted successfully'
             }
         )
 
